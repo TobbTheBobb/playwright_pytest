@@ -17,7 +17,6 @@ def login_logout_sample_user(playwright: Playwright) -> None:
     
 
     #login with my private credentials
-    print("PLEASE GIVE ME CREDENTIALS in file conftest.py function login_logout_sample_user")
     user=os.environ.get('PYTEST_USER')
     secret=os.environ.get('PYTEST_PASSWORD')
     
