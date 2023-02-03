@@ -1,5 +1,6 @@
 from playwright.sync_api import Playwright, expect
 import pytest
+import os
 
 
 #Fixture for login and logout a given user defined in the function
@@ -17,8 +18,8 @@ def login_logout_sample_user(playwright: Playwright) -> None:
 
     #login with my private credentials
     print("PLEASE GIVE ME CREDENTIALS in file conftest.py function login_logout_sample_user")
-    user="EMAIL"
-    secret="SECRET"
+    user=os.environ.get('PYTEST_USER')
+    secret=os.environ.get('PYTEST_PASSWORD')
     
     page.get_by_label("Benutzername oder Email*").fill(user)
     page.get_by_label("Passwort*").fill(secret)
