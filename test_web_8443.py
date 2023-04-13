@@ -35,9 +35,6 @@ from playwright.sync_api import expect
 import pytest
 from basic_functions import *
 
-###
-###login tests
-###
 
 #login is working
 @pytest.mark.login
@@ -46,6 +43,7 @@ def test_login(login_logout_sample_user) -> None:
     activity_heading=page.locator("//h2[text()='Alle Aktivitäten']")
     assert activity_heading.is_visible(), "Fehler bei Login - \"Alle Aktivitäten\" wird nicht angezeigt"
 
+#basic navigation and search is working
 @pytest.mark.login
 @pytest.mark.basic
 def test_basic_navigation_and_search(login_logout_sample_user) -> None:
