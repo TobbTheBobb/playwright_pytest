@@ -31,7 +31,7 @@ playwright codegen --ignore-https-errors https://web:8443
 ###Imports
 ###
 
-from playwright.sync_api import Playwright, Page, expect
+from playwright.sync_api import expect
 import pytest
 
 ###
