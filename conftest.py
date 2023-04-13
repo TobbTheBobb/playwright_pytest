@@ -34,11 +34,11 @@ def login_logout_sample_user(playwright: Playwright) -> None:
     
     #logout after tests
     page.get_by_role("link", name="Account").hover()
-    page.screenshot(path="./screenshots/screen_account-hover.png")
+    #page.screenshot(path="./screenshots/DEBUG_account-hover.png")
     page.get_by_role("link", name="Abmelden").click()
     expect(page).to_have_url("https://web:8443/")
     #screenshot after logout
-    #page.screenshot(path="./screenshots/screen_logout.png")
+    #page.screenshot(path="./screenshots/DEBUG_logout.png")
     
     #close context and browser
     context.close()
