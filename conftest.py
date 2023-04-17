@@ -1,4 +1,4 @@
-from playwright.sync_api import Playwright, expect
+from playwright.sync_api import Playwright, Page, expect
 import pytest
 import os
 
@@ -8,7 +8,7 @@ import os
 def login_logout_sample_user(playwright: Playwright) -> None:
     #open browser, context for https ignore in docker and page
     # slow_mo=500 --> usefull for tests over unstable wifi but slows down tests
-    browser=playwright.chromium.launch(slow_mo=500)
+    browser=playwright.chromium.launch()
     context=browser.new_context(ignore_https_errors=True)
     page=context.new_page()
     
@@ -25,6 +25,7 @@ def login_logout_sample_user(playwright: Playwright) -> None:
     #screenshot before login
     #page.screenshot(path="./screenshots/screen_login_filled.png")
     page.get_by_role("button", name="Anmelden").click()
+    page.wait_for_url("https://web:8443/activity")
     expect(page).to_have_url("https://web:8443/activity")
     #screenshot after login
     #page.screenshot(path="./screenshots/screen_activity.png")
@@ -36,6 +37,7 @@ def login_logout_sample_user(playwright: Playwright) -> None:
     page.get_by_role("link", name="Account").hover()
     #page.screenshot(path="./screenshots/DEBUG_account-hover.png")
     page.get_by_role("link", name="Abmelden").click()
+    page.wait_for_url("https://web:8443/")
     expect(page).to_have_url("https://web:8443/")
     #screenshot after logout
     #page.screenshot(path="./screenshots/DEBUG_logout.png")

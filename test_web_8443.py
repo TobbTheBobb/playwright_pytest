@@ -42,14 +42,23 @@ def test_login(login_logout_sample_user) -> None:
     page=login_logout_sample_user
     activity_heading=page.locator("//h2[text()='Alle Aktivitäten']")
     assert activity_heading.is_visible(), "Fehler bei Login - \"Alle Aktivitäten\" wird nicht angezeigt"
+    b_check_basic_elements(page)
 
 #basic navigation and search is working
 @pytest.mark.login
 @pytest.mark.basic
 def test_basic_navigation_and_search(login_logout_sample_user) -> None:
     page=login_logout_sample_user
+    b_check_basic_elements(page)
     b_nav_all(page)
     b_search_test(page)
+
+@pytest.mark.calendar
+def test_calendar_functions(login_logout_sample_user) -> None:
+    page=login_logout_sample_user
+    c_create(page)
+    #c_delete(page)
+
 
 
 ###
@@ -57,10 +66,10 @@ def test_basic_navigation_and_search(login_logout_sample_user) -> None:
 ###
 
 #dummy to skip
-@pytest.mark.skip(reason="Skippady-skabbady")
-def test_login_skip(login_logout_sample_user) -> None:
-    page=login_logout_sample_user
-    expect(page).to_have_url("https://web:8443/gibtesNICHTERRORSKIP")
+# @pytest.mark.skip(reason="Skippady-skabbady")
+# def test_login_skip(login_logout_sample_user) -> None:
+#     page=login_logout_sample_user
+#     expect(page).to_have_url("https://web:8443/gibtesNICHTERRORSKIP")
 
 #dummy to fail
 # @pytest.mark.xfail(reason="Das ist ein gewollter fail")
