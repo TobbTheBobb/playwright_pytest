@@ -95,5 +95,3 @@ def c_create(page):
     assert target.first.is_visible(), "Fehler - Event wird nicht in Aktivitäten angezeigt."
     page.get_by_role("link", name="Termine").click()
     page.get_by_role("link", name="test").first.click()
-    # page.get_by_role("link", name=" ").click()
-    # page.get_by_role("link", name=" Löschen").click()
